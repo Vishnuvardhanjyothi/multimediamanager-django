@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Media Upload</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 450px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        input[type="file"] {
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #4a90e2;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+
+        .view-media {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4a90e2;
+            font-weight: bold;
+        }
+
+        .view-media:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Media Upload</h1>
+
+        <p class="subtitle">Upload your image, video and audio files</p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" name="desc" placeholder="Enter description">
+            </div>
+
+            <div class="form-group">
+                <label>Image</label>
+                <input type="file" name="img" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label>Audio</label>
+                <input type="file" name="audio" accept="audio/*">
+            </div>
+
+            <div class="form-group">
+                <label>Video</label>
+                <input type="file" name="vid" accept="video/*">
+            </div>
+
+            <button type="submit">Upload Media</button>
+
+        </form>
+
+        <a href="{% url 'media' %}" class="view-media">
+            View Uploaded Media
+        </a>
+
+    </div>
+
+</body>
+</html>
